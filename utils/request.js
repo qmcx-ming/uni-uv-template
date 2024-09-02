@@ -2,7 +2,7 @@ import { getToken, removeToken } from '@/utils/auth';
 import useUserStore from '@/stores/modules/user';
 
 const env = {
-	dev: 'http://127.0.0.1:8080',
+	dev: 'https://mock.presstime.cn/mock/6694e3df463ab587e0f5274a/uni-uv-template',
 	prod: ''
 }
 
