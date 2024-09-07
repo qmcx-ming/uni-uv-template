@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
-import { getUserProfile, updateUserProfile } from '@/api/user';
+import { getUserProfile } from '@/api/user';
 import useUserStore from '@/stores/modules/user';
 
 const userStore = useUserStore();
@@ -81,10 +81,7 @@ const onSubmit = async () => {
 	loading.value = false;
 	// 回显到 我的信息
 	info.value = { ...form.value };
-	uni.showToast({
-		icon: 'none',
-		title: '修改成功'
-	});
+	uni.$toast('修改成功');
 };
 
 getProfile();
@@ -92,6 +89,7 @@ getProfile();
 
 <template>
 	<view class="profile">
+		<!-- TODO 需要实现组件抽离 -->
 		<uv-tabs
 			line-width="40"
 			:item-style="{ width: '160px', height: '44px' }"

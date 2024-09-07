@@ -39,6 +39,7 @@ const submit = async () => {
 		uni.reLaunch({
 			url: '/pages/index/index'
 		});
+		uni.$toast('登录成功');
 	} catch (error) {
 		console.log(error);
 		if (captchaEnabled.value) {

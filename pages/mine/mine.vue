@@ -1,6 +1,5 @@
 <script setup>
 import { computed, ref } from 'vue';
-import { onShow } from '@dcloudio/uni-app';
 import useUserStore from '@/stores/modules/user';
 import { updateUserPwd } from '@/api/user';
 import Avatar from '@/static/images/avatar.jpg';

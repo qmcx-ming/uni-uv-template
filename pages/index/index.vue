@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from 'vue';
-import useUserStore from '@/stores/modules/user';
 
 const title = ref('Uni-uv-Template');
 </script>

@@ -1,5 +1,5 @@
 <script>
-import { routerInterceptor } from '@/interceptor';
+import { routerInterceptor } from '@/interceptor/index';
 export default {
 	onLaunch: function () {
 		console.log('App Launch');
