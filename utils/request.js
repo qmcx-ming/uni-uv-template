@@ -1,4 +1,4 @@
-import { getToken, removeToken } from '@/utils/auth';
+import { getToken } from '@/utils/auth';
 import useUserStore from '@/stores/modules/user';
 
 const env = {
@@ -41,7 +41,7 @@ const request = (config = {}) => {
 					// 解出一层返回
 					resolve(res.data);
 				} else if (res.data.code === 401) {
-					removeToken();
+					useUserStore().resetToken();
 					uni.$toast(res.data.msg);
 					// 登录过期
 					uni.reLaunch({
