@@ -1,7 +1,11 @@
 <script>
 import { routerInterceptor } from '@/interceptor/index';
+import settings from './settings';
+
 export default {
 	onLaunch: function () {
+		if (!settings.logger) 
+			console.log = () => {}
 		console.log('App Launch');
 		routerInterceptor();
 	},

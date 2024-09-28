@@ -1,12 +1,6 @@
 import { getToken } from "@/utils/auth";
 import useUserStore from "@/stores/modules/user";
-
-const whiteList = [
-	'/pages/login/login',
-	'/pages/index/index',
-	'/pages/mine/mine',
-	'/'
-];
+import settings from '@/settings';
 
 const list = [
 	'navigateTo',
@@ -25,10 +19,7 @@ const checkUserInfo = async (url) => {
 			await useUserStore().getInfo();
 		} catch (error) {
 			await useUserStore().logout();
-			uni.showToast({
-				icon: 'none',
-				title: error.message
-			});
+			uni.$toast(error.message);
 			return false;
 		}
 	}
@@ -40,7 +31,7 @@ const checkUserInfo = async (url) => {
  * @param {String} url 路径
  * @description 校验白名单和token
  */
-const hasPermission = (url) => {
+export const hasPermission = (url) => {
 	// 判断是否有token
 	if (getToken()) {
 		// 已登录的情况下，访问登录页面，跳转到首页
@@ -54,7 +45,7 @@ const hasPermission = (url) => {
 	} else {
 		// 判断白名单
 		// 判断免登录白名单,true 直接进入, false 进入登录页面
-		if (whiteList.indexOf(url) !== -1) {
+		if (settings.whiteList.indexOf(url) !== -1) {
 			return true;
 		} else {
 			next('/login');
@@ -74,14 +65,13 @@ const next = (url = '/index') => {
  * 路由守卫
  */
 export const routerInterceptor = () => {
-	
 	// H5 地址栏输入拦截
 	// #ifdef H5
 	const url = window.location.hash.split('#')[1];
-	console.log(url);
+	console.log('H5拦截触发:', url);
 	hasPermission(url);
 	// #endif
-	
+
 	// 添加拦截器
 	list.forEach((item) => {
 		uni.addInterceptor(item, {
